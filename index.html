@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head><title>VIZITка</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+         <a href="https://t.me/deja_5u">Telegram</a>
+         
+         <a href="https://github.com/UdavK">Github</a>
+    </header>
+    
+    <div class="main">
+        
+        <main class="center">
+            <h1>Привет! Меня зовут Давид и на этом сайте ты можешь ознакомится с основами javascript!</h1>
+                 Начнем с краткой справки, вот что нам говорит википедия: 
+                 <q>JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили.</q>
+                 А что бы не совсем уж с лицом грустной пепе, обтекать эти термины, я скажу вкратце: <q>JavaScript - это язык для веб-разработки, который позволяет оживить сайт, и сделать полноценное веб-приложение</q>
+                 Да-да я помести свои слова в цитату, потому что могу, и как вы мне запретите, если для вас я буквально, просто страничка в интернете.
+                 <br>
+                 Теперь у нас будет небольшая демонстрация на что же способен javascript.
+                 <br>
+                 
+                <p>Для начала представься</p>
+                <input type="text" id="username">
+                <button onclick="saveName()">Сохранить</button>
+
+                <p>Выбери действие:</p>
+                <br>
+                <div class="button"><button onclick="run1()">Задание 1</button>
+                <button onclick="run2()">Задание 2</button>
+                <button onclick="runTest()">Пройти тест</button>
+                <button onclick="showOverlay()">Показать заставку</button>
+            </div>
+
+                <div class="overlay" onclick="hideOverlay()">
+                    <p>Сегодняшняя дата: <span id="currentDate"></span></p>
+                </div>
+                <br>
+                   
+                    <p>Выберите тему:</p>
+                    <div class="button"> 
+                    <button onclick="applyDayTheme()">День</button>
+                    <button onclick="applyNightTheme()">Ночь</button>
+                </div>
+        
+    </div>
+    <footer>
+       
+    </footer>
+</body>
+<script>
+                   const usernameInput = document.getElementById('username');
+                    const currentDateSpan = document.getElementById('currentDate');
+
+                    
+                    function saveName() {
+                    let username = usernameInput.value;
+                    if (username) {
+                        localStorage.setItem('username', username);
+                    }
+                    }
+
+                    
+                    function run1() {
+                const script = document.createElement('script');
+                script.src = 'script1.js';
+                document.head.appendChild(script);
+                }
+
+                    
+                    function run2() {
+                const script = document.createElement('script');
+                script.src = 'script2.js';
+                document.head.appendChild(script);
+                }
+
+                    
+                    function runTest() {
+                    const questions = [
+                        {
+                        question: 'Что такое JavaScript?',
+                        answer: 'Язык программирования'
+                        },
+                        {
+                        question: 'Что такое переменная в JavaScript?',
+                        answer: 'Имя, которое может содержать различные данные.'
+                        },
+                        {
+                        question: 'Ключевое слово для обявления переменной',
+                        answer: 'let'
+                        },
+                        {
+                        question: 'Какая функция выводит в браузере окно с текстом',
+                        answer: 'alert'
+                        },
+                        {
+                        question: 'Какие есть циклы в js',
+                        answer: 'for while do while'
+                        },
+                        {
+                        question: 'Как проверить тип переменной?',
+                        answer: 'typeof'
+                        },
+                        {
+                        question: 'Каким методом можно удалить элемент из конца массива?',
+                        answer: 'pop()'
+                        },
+                        {
+                        question: 'Каким можно добавить элемент в начало?',
+                        answer: 'unshift()'
+                        },
+                        {
+                        question: 'Как узнать длину массива?',
+                        answer: 'lehgth'
+                        },
+                        {
+                        question: 'Что стоит написать в зачетке у Макарова Д.А.',
+                        answer: 'зачтено'
+                        }
+
+                        
+                    ];
+
+                    let userAnswers = [];
+                    let result = 0;
+
+                    for (let i = 0; i < questions.length; i++) {
+                        let userAnswer = prompt(questions[i].question);
+                        userAnswers.push({ question: questions[i].question, userAnswer: userAnswer });
+                if (userAnswer && userAnswer.toLowerCase() === questions[i].answer.toLowerCase()) {
+                        result++;
+                        }
+                    }
+
+                    alert(`Вы ответили правильно на ${result} из ${questions.length} вопросов.`);
+
+                    console.log("Ваши ответы:");
+                    for (let i = 0; i < userAnswers.length; i++) {
+                        let userResponse = userAnswers[i].userAnswer ? userAnswers[i].userAnswer : "Пользователь не ответил";
+                        console.log(`${userAnswers[i].question}: ${userResponse}`);
+                    }
+                    }
+
+                    
+                    function showOverlay() {
+                    const overlay = document.querySelector('.overlay');
+                    overlay.style.display = 'block';
+                    currentDateSpan.textContent = new Date().toLocaleDateString();
+                    }
+
+                    
+                    function hideOverlay() {
+                    const overlay = document.querySelector('.overlay');
+                    overlay.style.display = 'none';
+                    }
+
+                    
+                    let savedUsername = localStorage.getItem('username');
+                    if (savedUsername) {
+                    usernameInput.value = savedUsername;
+                    }
+                    
+                        function applyDayTheme() {
+                        document.body.style.backgroundColor = '#e6f7ff';  
+                        document.body.style.color="rgb(28, 32, 36)";
+                        localStorage.setItem('theme', 'day'); 
+                        }
+
+                        
+                        function applyNightTheme() {
+                        document.body.style.backgroundColor = '#351263';  
+                        document.body.style.color = '#fff'
+                        localStorage.setItem('theme', 'night'); 
+                        }
+
+                        
+                        window.onload = function() {
+                        const theme = localStorage.getItem('theme');
+                        if (theme === 'day') {
+                            applyDayTheme();
+                        } else if (theme === 'night') {
+                            applyNightTheme();
+                        }
+                        }
+
+                </script>
+
+</html>
